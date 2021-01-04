@@ -1,0 +1,101 @@
+<import src="../../../common/head.wxml" />
+<wxs module="imgFile" src="../../../wxs/imgFile.wxs" />
+<view class="container">
+	<checkbox value="cb" checked="true" />
+	选中
+	<view class="container">
+		<view class="page-body">
+			<view class="page-section page-section-spacing swiper">
+				<swiper
+				 indicator-dots="{{indicatorDots}}"
+				 autoplay="{{autoplay}}"
+				 interval="{{interval}}"
+				 duration="{{duration}}"
+				 snap-to-edge="false"
+				 easing-function="default"
+				>
+					<block wx:for="{{background}}" wx:key="*this">
+						<swiper-item>
+							<view class="swiper-item {{item}}" />
+						</swiper-item>
+					</block>
+				</swiper>
+			</view>
+			<view class="page-section" style="margin-top: 40rpx;margin-bottom: 0;">
+				<view class="weui-cells weui-cells_after-title">
+					<view class="weui-cell weui-cell_switch">
+						<view class="weui-cell__bd">指示点</view>
+						<view class="weui-cell__ft">
+							<switch checked="{{indicatorDots}}" bindchange="changeIndicatorDots" />
+						</view>
+					</view>
+					<view class="weui-cell weui-cell_switch">
+						<view class="weui-cell__bd">自动播放</view>
+						<view class="weui-cell__ft">
+							<switch checked="{{autoplay}}" bindchange="changeAutoplay" />
+						</view>
+					</view>
+				</view>
+			</view>
+
+			<view class="page-section page-section-spacing">
+				<view class="page-section-title">
+					<text>幻灯片切换时长(ms)</text>
+					<text class="info">{{duration}}</text>
+				</view>
+				<slider
+				 bindchange="durationChange"
+				 value="{{duration}}"
+				 min="500"
+				 max="2000"
+				/>
+				<view class="page-section-title">
+					<text>自动播放间隔时长(ms)</text>
+					<text class="info">{{interval}}</text>
+				</view>
+				<slider
+				 bindchange="intervalChange"
+				 value="{{interval}}"
+				 min="2000"
+				 max="10000"
+				/>
+			</view>
+		</view>
+	</view>
+	<view>
+		<text>这里是文本</text>
+	</view>
+	<template wx:if="{{ wxif === 0 }}" is="head" data="{{title: 'button'}}" />
+	<view wx:else class="page-body">
+		<view
+		 class="btn-area {{ (index === testData.length-1 && testData[0].xxx ) ? 'test1': '' }}"
+		 id="buttonContainer"
+		 wx:for="{{ testData }}"
+		 wx:key="index"
+		 catchtap="testTap"
+		>
+			<button type="primary" catchtap="{{ item.xx === 0 ? '' : 'test2Tap' }}" data-index="{{ index }}">
+				页面主操作 Normal
+			</button>
+			<button
+			 wx:else
+			 class="go-order  s-fs-30  btn  primary {{stock==0||disabled?'disabled':'s-fc-main s-bgc-main'}}"
+			 open-type="getUserInfo"
+			 lang="zh_CN"
+			 bindgetuserinfo="toDetailPage"
+			>{{buttonText}}
+			</button>
+			<text>{{item.xx?'':'< hello >'}}</text>
+			<button
+			 class="phoneAuthArea {{extendClass}}"
+			 bindgetphonenumber="doAuthPhone"
+			 open-type="getPhoneNumber"
+			 form-type="submit"
+			 plain
+			 wx:elif="{{mainData.userinfo.length > 0 && tool.includeIt(mainData.userinfo,3) && !mobile}}"
+			/>
+		</view>
+		<template is="foot" />
+		<foo name='{{flag?"true" : "false"}}' title="title" class='hidden' />
+	</view>
+

@@ -1,0 +1,17 @@
+{
+  "name": "htmlParser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "html-element": "^2.3.1",
+    "htmlparser2": "^6.0.0",
+    "json-stringify-safe": "^5.0.1"
+  }
+}
